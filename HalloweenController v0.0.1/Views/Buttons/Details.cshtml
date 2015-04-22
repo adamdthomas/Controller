@@ -1,0 +1,60 @@
+﻿@model HalloweenController_v0._0._1.Models.Button
+
+<div>
+    <h4>Button</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Label)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Label)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Style)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Style)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Response)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Response)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ButtonID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

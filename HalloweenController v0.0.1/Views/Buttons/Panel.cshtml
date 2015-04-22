@@ -1,0 +1,108 @@
+﻿@model IEnumerable<HalloweenController_v0._0._1.Models.Button>
+
+
+<br />
+
+<div class="maingroup">
+    <div class="panel panel-default">
+        <div class="panel-heading">- Halloween Prop  Control Panel -</div>
+        <div class="panel-body" id="buttonholder">
+            @foreach (var item in Model)
+            {
+                <div id="@item.Label" class="icon">
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (User.Identity.Name == "adamdthomas@gmail.com" | User.Identity.Name == "pjthomas45@gmail.com")
+                        {
+                            <input type="button" value="@item.Label" class="btn btn-@item.Style btn-lg" onclick="Respond('locknone', '@item.TimeOut', '@item.Label', '@item.URI')" />
+
+                        }
+                        else
+                        {
+                            <input type="button" value="@item.Label" class="btn btn-@item.Style btn-lg" onclick="Respond('@item.Response', '@item.TimeOut', '@item.Label', '@item.URI')" />
+                        }
+
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<div id="ButtonSuccess">
+    <div class="alert alert-success">
+        <div id="funnies"></div>
+    </div>
+</div>
+<!--
+<div id="ButtonFailure">
+    <div class="alert alert-danger">
+        Your request did not make it to the controller. You are terrible and should feel bad.
+    </div>
+</div>
+    -->
+<script type="text/javascript" src="~/Scripts/REST.js"></script>
+<script type="text/javascript">
+    setTimeout(function () { hideDivFAST('ButtonSuccess') }, 10);
+</script>
+
+@if (Request.IsAuthenticated)
+{
+    if (User.Identity.Name == "adamdthomas@gmail.com" | User.Identity.Name == "pjthomas45@gmail.com")
+    {
+    }
+    else
+    {
+
+        <script type="text/javascript" src="~/Scripts/REST.js"></script>
+        <script>
+            setTimeout(function () { hideDiv("buttonholder") }, 5);
+            setTimeout(function () { showDiv("buttonholder") }, 30000);
+            setTimeout(function () { hideDiv("timerholder") }, 33000);
+        </script>
+
+        <div id="timerholder">
+            <h2>You will have to wait until you can access your buttons.</h2>
+            <div class="maingroup">
+
+                <div id="timerid" class="timer">
+                    <script type="text/javascript" src="~/Scripts/countdown.js"></script>
+                    <script>
+                        var myCountdown2 = new Countdown({
+                            time: 30, width: 200, height: 80, rangeHi: "second", hideLine: 1, numbers: {
+                                font: "Arial",
+                                color: "#FFFFFF",
+                                bkgd: "#ff8f00",
+                                rounded: 0.15,
+                                shadow: {
+                                    x: 0,
+                                    y: 3,
+                                    s: 4,
+                                    c: "#000000",
+                                    a: 0.4
+                                }
+                            },
+                            labels: {
+                                font: "Arial",
+                                color: "#a8a8a8",
+                                weight: "normal"
+                            }
+                        });
+                    </script>
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+
+}
+else
+{
+    <div class="jumbotron">
+         <p class="lead">You will need to be logged in to view buttons in your Panel.</p>
+    </div>
+}

@@ -1,0 +1,167 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+body {
+    text-align: center;
+}
+
+iconset {
+  max-width: 600px;
+  margin: 0 auto; 
+}
+
+.my_div{padding:100px;}
+
+
+img.cntr {
+    display: block;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+       }
+    
+    
+@media screen and (min-width:600px) {
+  .maingroup{
+  
+  	margin-left: auto;
+	margin-right: auto;
+    width: 100%;
+  }
+} 
+
+
+@media screen and (min-width:600px) {
+  div.maingroupcal{
+  
+  	margin-left: auto;
+	margin-right: auto;
+    width: 75%;
+  }
+} 
+
+
+
+@media screen and (min-width:600px) {
+  div.subgroup{
+
+  position: absolute;
+  left: 0px;
+  top:0px;
+  width: 200px;
+  }
+} 
+
+ 
+ @media screen and (min-width:600px) {
+  div.container{
+
+  	position: relative;
+  	margin-left: auto;
+	margin-right: auto;
+    width: 100%;
+  }
+} 
+
+@media screen and (min-width:600px) {
+  div.errorgroup{
+  
+  	margin-left: auto;
+	margin-right: auto;
+    width: 75%;
+  }
+} 
+
+
+    
+div.cntr {
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.icon {
+  display: inline-block;
+  width: 75px;
+  height: 35px;
+  margin: 1em;  
+  vertical-align:middle;
+
+}
+
+div.timer {
+  display: inline-block;
+
+  margin: 1em;  
+  vertical-align:middle;
+
+}
+
+div.logowrapper {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin: 1em;  
+  vertical-align:middle;
+}
+
+  
+div.sm{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 1em; 
+  vertical-align:middle; 
+
+}
+  
+  
+  @media screen and (min-width:600px) {
+  iframe.iframeprop{
+  
+  	margin-left: auto;
+	margin-right: auto;
+    width: 85%;
+  }
+} 
+
+  div.pill{
+  
+  	margin-left: 0px;
+	width: 150px;
+  }
+    
+  
+div.caracontain{
+	width:430px;
+	height:800px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+
+
+

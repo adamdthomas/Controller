@@ -1,0 +1,33 @@
+﻿@model IEnumerable<HalloweenController_v0._0._1.Models.Button>
+
+<br />
+
+<div class="maingroup">
+    <div class="panel panel-default">
+        <div class="panel-heading">- Halloween Prop  Control Panel -</div>
+        <div class="panel-body" id="buttonholder">
+
+
+
+            @foreach (var item in Model)
+            {
+                <div id="@item.Label" class="icon">
+                   
+                    <input type="button" value="@item.Label" class="btn btn-@item.Style btn-lg" onclick="location.href='@Url.Action("TestClick", "Buttons", new { URI = item.URI })';Respond('@item.Response', '@item.TimeOut', '@item.Label')" />
+                   <!-- <input type="button" value="@item.Label" class="btn btn-@item.Style btn-lg" onclick="Respond('@item.Response', '@item.TimeOut');location.href='@Url.Action("TestClick", "Buttons", new { URI = item.URI })'" />
+                 <input type="button" value="@item.Label" class="btn btn-@item.Style btn-lg" onclick="Respond('@item.Response', '@item.TimeOut', '@item.Label')" /> -->
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+ <span class="label label-danger">Your request did not make it to the controller. You are terrible and should feel bad.</span>
+
+
+

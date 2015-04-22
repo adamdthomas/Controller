@@ -1,0 +1,89 @@
+﻿@model IEnumerable<HalloweenController_v0._0._1.Models.Button>
+
+@if (Request.IsAuthenticated)
+{
+    if (User.Identity.Name == "adamdthomas@gmail.com" | User.Identity.Name == "pjthomas45@gmail.com" | User.Identity.Name == "mspeterson@gmail.com")
+    {
+        <br />
+    <br />
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Label)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Style)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.URI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Response)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TimeOut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Users)
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model5Item => item.Label)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Style)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.URI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Response)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeOut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Users)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ButtonID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ButtonID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ButtonID })
+                </td>
+            </tr>
+        }
+
+        </table>
+
+   
+
+    <p align="left">
+        <input type="button" value="Create New Button" class="btn btn-default btn-lg" onclick="location.href='@Url.Action("Create", "Buttons")'" /> 
+
+        <!--@Html.ActionLink("Create New", "Create")-->
+    </p>
+    }
+    else
+    {
+        <br />
+        <br />
+        <div class="jumbotron">
+            <h1>Get Out!</h1>
+            <p class="lead">You are not authorized to view this page.</p>
+        </div>
+    }
+}
+else
+{
+    <br />
+    <br />
+<div class="jumbotron">
+    <h1>Get Out!</h1>
+    <p class="lead">You are not authorized to view this page.</p>
+</div>
+}

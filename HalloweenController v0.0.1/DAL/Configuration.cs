@@ -1,0 +1,32 @@
+namespace HalloweenController_v0._0._1.Migrations
+{
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<HalloweenController_v0._0._1.DAL.PanelContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = true;
+            ContextKey = "HalloweenController_v0._0._1.DAL.PanelContext";
+        }
+
+        protected override void Seed(HalloweenController_v0._0._1.DAL.PanelContext context)
+        {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
+        }
+    }
+}
