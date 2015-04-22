@@ -27,6 +27,18 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("My Control Panel", "Panel", "Buttons")</li>
                     <li>@Html.ActionLink("Administration", "Index", "Buttons")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (User.Identity.Name == "adamdthomas@gmail.com")
+                        {
+                            <li>@Html.ActionLink("Star Manager", "StarManager", "Home")</li>
+                        }
+                        if (User.Identity.Name == "gabriel@gmail.com" | User.Identity.Name == "adrian@gmail")
+                        {
+                            <li>@Html.ActionLink("My Stars", "Index", "Buttons")</li>
+                        }
+                    }
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
