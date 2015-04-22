@@ -29,5 +29,23 @@ namespace HalloweenController_v0._0._1.Controllers
 
             return View();
         }
+
+
+        public ActionResult StarManager()
+        {
+
+            ViewBag.Message = "Star Manager";
+
+            return View();
+        }
+
+
+        public ActionResult MyStars()
+        {
+
+            ViewBag.Message = "My Stars";
+
+            return View();
+        }
     }
 }
