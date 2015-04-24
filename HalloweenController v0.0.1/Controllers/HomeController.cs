@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HalloweenController_v0._0._1.DAL;
+
 
 namespace HalloweenController_v0._0._1.Controllers
 {
     public class HomeController : Controller
     {
+        int i = 0;
+
         public ActionResult Index()
         {
             ViewData["DisplayMessage"] = false;
@@ -33,10 +37,17 @@ namespace HalloweenController_v0._0._1.Controllers
 
         public ActionResult StarManager()
         {
-
-            ViewBag.Message = "Star Manager";
+            i++;
+            ViewBag.Message = i.ToString();
+            //ViewBag.Message = "Star Manager";
 
             return View();
+        }
+
+        public ActionResult AddOne()
+        {
+            MyMethods.AddStars("Gabriel",1);
+            return View("StarManager");
         }
 
 

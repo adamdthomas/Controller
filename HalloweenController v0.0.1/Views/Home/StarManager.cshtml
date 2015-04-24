@@ -1,7 +1,24 @@
-﻿@*@{
-    ViewBag.Title = "Welcome, Star Master.";
+﻿@{
+    ViewBag.Title = "";
 }
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>*@
-
+@*<h3>@ViewBag.Message</h3>*@
+<br />
+<br />
 <p>Welcome, Star Master.</p>
+<br />
+
+<br />
+@*<input type="button" value="This is the Button Title" onclick="location.href='@Url.Action("AddOne", "Home")'" />*@
+
+
+<div class="maingroup">
+    <div class="panel panel-default">
+        <div class="panel-heading">- Stars -</div>
+        <div class="panel-body" id="buttonholder">
+            <div id="TestID" class="icon">
+                <input type="button" value="1" class="btn btn-default btn-lg" onclick="location.href='@Url.Action("AddOne", "Home")'" />
+            </div>
+        </div>
+    </div>
+</div>
