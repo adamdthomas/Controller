@@ -10,6 +10,8 @@ namespace HalloweenController_v0._0._1.Controllers
 {
     public class HomeController : Controller
     {
+        public bool NeedStats = true;
+
         public ActionResult Index()
         {
             ViewData["DisplayMessage"] = false;
@@ -76,7 +78,10 @@ namespace HalloweenController_v0._0._1.Controllers
 
         public ActionResult StarManager()
         {
-            StarStats();
+            if (NeedStats)
+            {
+               StarStats(); 
+            }
             return View();
         }
 
@@ -115,6 +120,7 @@ namespace HalloweenController_v0._0._1.Controllers
             }
             ViewBag.AFightToday = FightToday;
             StarsSheet.SaveAndExit();
+            NeedStats = false;
         }
 
 
@@ -153,6 +159,7 @@ namespace HalloweenController_v0._0._1.Controllers
             }
             ViewBag.AFightToday = FightToday;
             StarsSheet.SaveAndExit();
+            NeedStats = false;
         }
 
 
@@ -189,6 +196,7 @@ namespace HalloweenController_v0._0._1.Controllers
             }
             ViewBag.AFightToday = FightToday;
             StarsSheet.SaveAndExit();
+            NeedStats = false;
         }
 
 
@@ -203,66 +211,66 @@ namespace HalloweenController_v0._0._1.Controllers
         public ActionResult GFight()
         {
             Fight("Gabriel");
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
         public ActionResult GPayout()
         {
             Payout("Gabriel");
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GAddQtr()
         {
             AddStars("Gabriel", .25);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GAddHalf()
         {
             AddStars("Gabriel", .5);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GAddOne()
         {
             AddStars("Gabriel", 1);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GAddTwo()
         {
             AddStars("Gabriel", 2);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GAddThree()
         {
             AddStars("Gabriel", 3);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GAddFour()
         {
             AddStars("Gabriel", 4);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GAddFive()
         {
             AddStars("Gabriel", 5);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GSubQtr()
         {
             AddStars("Gabriel", -.25);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult GSubOne()
         {
             AddStars("Gabriel", -1);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         #endregion
@@ -273,67 +281,67 @@ namespace HalloweenController_v0._0._1.Controllers
         public ActionResult AFight()
         {
             Fight("Adrian");
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
         public ActionResult APayout()
         {
             Payout("Adrian");
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult AAddQtr()
         {
             AddStars("Adrian", .25);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult AAddHalf()
         {
             AddStars("Adrian", .5);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult AAddOne()
         {
             AddStars("Adrian", 1);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
 
         public ActionResult AAddTwo()
         {
             AddStars("Adrian", 2);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult AAddThree()
         {
             AddStars("Adrian", 3);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult AAddFour()
         {
             AddStars("Adrian", 4);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult AAddFive()
         {
             AddStars("Adrian", 5);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult ASubQtr()
         {
             AddStars("Adrian", -.25);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         public ActionResult ASubOne()
         {
             AddStars("Adrian", -1);
-            return View("StarManager");
+            return RedirectToAction("StarManager", "Home");
         }
 
         #endregion

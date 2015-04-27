@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "";
 }
-<h2>@ViewBag.Title</h2>
 
 @if (Request.IsAuthenticated)
 { 
@@ -15,14 +14,13 @@
         @*<input type="button" value="This is the Button Title" onclick="location.href='@Url.Action("AddOne", "Home")'" />*@
 
 
-        <br />  
         <div class="panel panel-default">
             <div class="panel-heading"> Gabriel's Stars</div>
             <br />
                 <div class="btn-group" role="group" aria-label="...">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            Add/Remove Stars
+                            +/- Stars
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
@@ -43,10 +41,10 @@
                  </div>
             <br />
             <br />
-            <p>Today: @ViewBag.GDCount | Total: @ViewBag.GTCount | Bad Behavior Today: @ViewBag.GFightToday | Money Owed: @ViewBag.GDollars</p>
+            <p>Today: @ViewBag.GDCount | Total: @ViewBag.GTCount | Bad Behavior Today: @ViewBag.GFightToday</p>
+            <p>Money Owed: @ViewBag.GDollars</p>
             <br />
         </div>
-        <br />
         <br />
         <div class="panel panel-default">
             <div class="panel-heading"> Adrian's Stars</div>
@@ -54,7 +52,7 @@
             <div class="btn-group" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        Add/Remove Stars
+                        +/- Stars
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
@@ -75,9 +73,10 @@
             </div>
             <br />
             <br />
-            <p>Today: @ViewBag.ADCount | Total: @ViewBag.ATCount | Bad Behavior Today: @ViewBag.AFightToday | Money Owed: @ViewBag.ADollars</p>
+            <p>Today: @ViewBag.ADCount | Total: @ViewBag.ATCount | Bad Behavior Today: @ViewBag.AFightToday</p>
+            <p>Money Owed: @ViewBag.ADollars</p>
             <br />
-        </div>
+</div>
     }
 
 }
