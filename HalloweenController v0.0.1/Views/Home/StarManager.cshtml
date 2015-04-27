@@ -1,24 +1,83 @@
 ﻿@{
     ViewBag.Title = "";
 }
-<h2>@ViewBag.Title.</h2>
-@*<h3>@ViewBag.Message</h3>*@
-<br />
-<br />
-<p>Welcome, Star Master.</p>
-<br />
+<h2>@ViewBag.Title</h2>
 
-<br />
-@*<input type="button" value="This is the Button Title" onclick="location.href='@Url.Action("AddOne", "Home")'" />*@
+@if (Request.IsAuthenticated)
+{ 
+
+    if (User.Identity.Name == "adamdthomas@gmail.com" | User.Identity.Name == "robyngthomas@gmail.com")
+    {
+
+        <br />
+        <h4>Welcome, Star Master.</h4>
+        <br />
+        @*<input type="button" value="This is the Button Title" onclick="location.href='@Url.Action("AddOne", "Home")'" />*@
 
 
-<div class="maingroup">
-    <div class="panel panel-default">
-        <div class="panel-heading">- Stars -</div>
-        <div class="panel-body" id="buttonholder">
-            <div id="TestID" class="icon">
-                <input type="button" value="1" class="btn btn-default btn-lg" onclick="location.href='@Url.Action("AddOne", "Home")'" />
-            </div>
+        <br />  
+        <div class="panel panel-default">
+            <div class="panel-heading"> Gabriel's Stars</div>
+            <br />
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Add/Remove Stars
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="@Url.Action("GAddQtr", "Home")">1/4</a></li>
+                            <li><a href="@Url.Action("GAddHalf", "Home")">1/2</a></li>
+                            <li><a href="@Url.Action("GAddOne", "Home")">1</a></li>
+                            <li><a href="@Url.Action("GAddTwo", "Home")">2</a></li>
+                            <li><a href="@Url.Action("GAddThree", "Home")">3</a></li>
+                            <li><a href="@Url.Action("GAddFour", "Home")">4</a></li>
+                            <li><a href="@Url.Action("GAddFive", "Home")">5</a></li>
+                            <li><a href="@Url.Action("GSubQtr", "Home")">-1/4</a></li>
+                            <li><a href="@Url.Action("GSubOne", "Home")">-1</a></li>
+                        </ul>
+                    </div>
+                    <button type="button" onclick="location.href='@Url.Action("GPayout", "Home")'" class="btn btn-default">Pay Day</button>
+                    <button type="button" onclick="location.href='@Url.Action("GFight", "Home")'" class="btn btn-default">Bad Behavior</button>
+            
+                 </div>
+            <br />
+            <br />
+            <p>Today: @ViewBag.GDCount | Total: @ViewBag.GTCount | Bad Behavior Today: @ViewBag.GFightToday | Money Owed: @ViewBag.GDollars</p>
+            <br />
         </div>
-    </div>
-</div>
+        <br />
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading"> Adrian's Stars</div>
+            <br />
+            <div class="btn-group" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Add/Remove Stars
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("AAddQtr", "Home")">1/4</a></li>
+                        <li><a href="@Url.Action("AAddHalf", "Home")">1/2</a></li>
+                        <li><a href="@Url.Action("AAddOne", "Home")">1</a></li>
+                        <li><a href="@Url.Action("AAddTwo", "Home")">2</a></li>
+                        <li><a href="@Url.Action("AAddThree", "Home")">3</a></li>
+                        <li><a href="@Url.Action("AAddFour", "Home")">4</a></li>
+                        <li><a href="@Url.Action("AAddFive", "Home")">5</a></li>
+                        <li><a href="@Url.Action("ASubQtr", "Home")">-1/4</a></li>
+                        <li><a href="@Url.Action("ASubOne", "Home")">-1</a></li>
+                    </ul>
+                </div>
+                <button type="button" onclick="location.href='@Url.Action("APayout", "Home")'" class="btn btn-default">Pay Day</button>
+                <button type="button" onclick="location.href='@Url.Action("AFight", "Home")'" class="btn btn-default">Bad Behavior</button>
+
+            </div>
+            <br />
+            <br />
+            <p>Today: @ViewBag.ADCount | Total: @ViewBag.ATCount | Bad Behavior Today: @ViewBag.AFightToday | Money Owed: @ViewBag.ADollars</p>
+            <br />
+        </div>
+    }
+
+}

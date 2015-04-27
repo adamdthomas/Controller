@@ -1,9 +1,51 @@
 ﻿@{
-    ViewBag.Title = "Welcome to your star page!";
+    ViewBag.Title = "Welcome to your star page Adrian!";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Gabriels Stars - Today: @ViewBag.GDCount   Total: @ViewBag.GTCount.</p>
-<br />  
-<p>Adrians Stars - Today: @ViewBag.ADCount   Total: @ViewBag.ATCount</p>
+
+<table class="table table-bordered table-striped">
+    <colgroup>
+        <col class="col-xs-7">
+        <col class="col-xs-1">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="success">
+            <th scope="row">
+                How many stars did you earn today?
+            </th>
+            <td>@ViewBag.ADCount</td>
+        </tr>
+        <tr>
+            <th scope="row">
+                How many stars do you have?
+            </th>
+            <td>@ViewBag.ATCount</td>
+        </tr>
+        <tr class="success">
+            <th scope="row">
+                How much money do you have?
+            </th>
+            <td>@ViewBag.ADollars</td>
+        </tr>
+        <tr>
+            <th scope="row">
+                Were you good today?
+            </th>
+            <td>@ViewBag.AFightToday</td>
+        </tr>
+        <tr class="success">
+            <th scope="row">
+                How much money has bad behavior cost you?
+            </th>
+            <td>@ViewBag.AFightLost</td>
+        </tr>
+    </tbody>
+</table>

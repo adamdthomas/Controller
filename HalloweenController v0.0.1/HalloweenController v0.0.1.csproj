@@ -309,6 +309,8 @@
     <Content Include="Views\Buttons\PartialPanel.cshtml" />
     <Content Include="Views\Home\MyStars.cshtml" />
     <Content Include="Views\Home\StarManager.cshtml" />
+    <Content Include="Views\Home\AStars.cshtml" />
+    <Content Include="Views\Home\GStars.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

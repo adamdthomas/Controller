@@ -10,30 +10,37 @@ namespace HalloweenController_v0._0._1.DAL
 {
     public class MyMethods
     {
-        public static string StarsPath = "C:\\Logs\\stars.xlsx ";
+
+
+
+        public static string StarsPath = "C:\\Logs\\stars.xls";
 
         public static bool ShowDisplay;
 
-        public static void AddStars(string AccountName, double Amount)
+        public static double GetTotalStars(string AccountName)
         {
-            Excel StarsSheet = new Excel(StarsPath, 0);
-            StarsSheet.AddToCell(3, 5, 3);
+            Excel StarsSheet = new Excel(StarsPath, AccountName);
+            double Totals = StarsSheet.GetCellNumber(1, 2);
+            StarsSheet.SaveAndExit();
+            return Totals;
+        }
 
+        public static double GetTodaysStars(string AccountName)
+        {
+            Excel StarsSheet = new Excel(StarsPath, AccountName);
+            int TR = StarsSheet.GetTodaysRow();
+            double TodaysTotals = StarsSheet.GetCellNumber(TR, 5);
+            StarsSheet.SaveAndExit();
+            return TodaysTotals;
+        }
 
-            //Application excel = new Application();
-            //Workbook wb = excel.Workbooks.Open(StarsPath);
-            //Worksheet ws = wb.ActiveSheet;
-            //var currentCell = ws.Cells[3, 5].value;
-            //if (currentCell == null)
-            //{
-            //    currentCell = 0;
-            //}
-            //int CC = int.Parse(currentCell.ToString());
-            //CC++;
-            //ws.Cells[3, 5] = CC.ToString();
-            //wb.Save();
-            //wb.Close();
-            //Marshal.ReleaseComObject(wb);
+        public static double AddStars(string AccountName, double Amount)
+        {
+            Excel StarsSheet = new Excel(StarsPath, AccountName);
+            int row = StarsSheet.GetTodaysRow();
+            double newvalue = StarsSheet.AddToCell(row, 5, Amount);
+            StarsSheet.SaveAndExit();
+            return newvalue;
         }
 
         public static void WriteToLog(string text)
@@ -77,11 +84,27 @@ namespace HalloweenController_v0._0._1.DAL
         public static Range range;
 
 
-        public Excel(string FilePath, int SheetIndex)
+        public Excel(string FilePath, string SheetName)
         {
             excel = new Application();
-            Workbook wb = excel.Workbooks.Open(FilePath);
-            Worksheet ws = wb.Sheets[SheetIndex].Activate();
+            wb = excel.Workbooks.Open(FilePath);
+
+            excel.DisplayAlerts = false;
+            excel.Visible = false;
+
+            ws = wb.Sheets[SheetName];
+            //ws = wb.ActiveSheet;
+
+
+            range = ws.get_Range("A1", "A3650");
+            // set each cell's format to Text
+            range.NumberFormat = "@";
+
+        }
+
+        public void SwitchSheet(string SheetName)
+        {
+            ws = wb.Sheets[SheetName];
         }
 
         public  string GetCellString(int Row, int Col)
@@ -107,6 +130,7 @@ namespace HalloweenController_v0._0._1.DAL
 
         public  void SetCellString(int Row, int Col, string Value)
         {
+            
             ws.Cells[Row, Col] = Value.ToString();
         }
 
@@ -115,18 +139,57 @@ namespace HalloweenController_v0._0._1.DAL
             ws.Cells[Row, Col] = Value;
         }
 
-        public  void AddToCell(int Row, int Col, double Value)
+        public  double AddToCell(int Row, int Col, double Value)
         {
             double CurrentValue = GetCellNumber(Row, Col);
             double NewValue = CurrentValue + Value;
             SetCellNumber(Row, Col, NewValue);
+            return NewValue;
         }
 
-        public  int GetFirstEmptyRow(string ColumnLetter)
+        public int GetTodaysRow()
         {
-            range = ws.get_Range(ColumnLetter + "1", ColumnLetter + "200000");
-            Range foundRange = range.EntireRow.Find("");
-            int row = foundRange.Row;
+            DateTime today = DateTime.Today;
+            string date = today.ToString("MM/dd/yyyy");
+            range = ws.get_Range("A1", "A3650");
+            Range foundRange = range.EntireRow.Find(date);
+            int row;
+
+            if (foundRange == null)
+            {
+                int FIR = GetFirstEmptyRow("A");
+                SetCellString(FIR, 1, date);
+                row = FIR;
+            }
+            else
+            {
+                row = foundRange.Row;
+            }
+
+            return row;
+
+        }
+
+        public int GetFirstEmptyRow(string ColumnLetter)
+        {
+            //string currentVal;
+            range = ws.get_Range(ColumnLetter + "1", ColumnLetter + "3650");
+            var rangeValues = range.Value2;
+            int row = 0;
+            for (int r = 1; r < 3650; r++)
+            {
+                var currentVal = rangeValues[r, 1];
+                if (currentVal == null)
+                {
+                    row = r;
+                    break;
+                }
+            }
+
+            //Range foundRange = range.EntireRow.Find("");
+            //DateTime today = DateTime.Today;
+            //int rowf = foundRange.Row;
+
             return row;
         }
 
@@ -134,7 +197,35 @@ namespace HalloweenController_v0._0._1.DAL
         {
             wb.Save();
             wb.Close();
-            Marshal.ReleaseComObject(wb);
+            excel.Quit();
+
+            // Cleanup
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            if (range != null)
+            {
+                Marshal.FinalReleaseComObject(range);
+                range = null;
+            }
+
+            if (ws != null)
+            {
+                Marshal.FinalReleaseComObject(ws);
+                ws = null;
+            }
+            if (wb != null)
+            {
+                Marshal.FinalReleaseComObject(wb);
+                wb = null;
+            }
+            if (excel != null)
+            {
+                Marshal.FinalReleaseComObject(excel);
+                excel = null;
+            }
+
+           // Marshal.ReleaseComObject(wb);
         }
 
     }
