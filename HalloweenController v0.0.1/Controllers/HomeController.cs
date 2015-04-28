@@ -11,6 +11,7 @@ namespace HalloweenController_v0._0._1.Controllers
     public class HomeController : Controller
     {
         public bool NeedStats = true;
+        public Excel StarsSheet;
 
         public ActionResult Index()
         {
@@ -47,33 +48,8 @@ namespace HalloweenController_v0._0._1.Controllers
 
         public void StarStats()
         {
-            Excel StarsSheet = new Excel("C:\\Logs\\stars.xls", "Gabriel");
-            ViewBag.GTCount = StarsSheet.GetCellNumber(1, 2).ToString();
-            int TR = StarsSheet.GetTodaysRow();
-            ViewBag.GDCount = StarsSheet.GetCellNumber(TR, 4);
-            ViewBag.GFightCount = StarsSheet.GetCellNumber(1, 8);
-            ViewBag.GDollars = "$" + StarsSheet.GetCellNumber(9, 8);
-            ViewBag.GFightLost = "$" + StarsSheet.GetCellNumber(10, 8);
-            string FightToday = StarsSheet.GetCellString(TR, 2);
-            if (FightToday != "Yes")
-            {
-                FightToday = "No";
-            }
-            ViewBag.GFightToday = FightToday;
-            StarsSheet.SwitchSheet("Adrian");
-            ViewBag.ATCount = StarsSheet.GetCellNumber(1, 2).ToString();
-            TR = StarsSheet.GetTodaysRow();
-            ViewBag.ADCount = StarsSheet.GetCellNumber(TR, 4);
-            ViewBag.AFightCount = StarsSheet.GetCellNumber(1, 8);
-            ViewBag.ADollars = "$" + StarsSheet.GetCellNumber(9, 8);
-            ViewBag.AFightLost = "$" + StarsSheet.GetCellNumber(10, 8);
-            FightToday = StarsSheet.GetCellString(TR, 2);
-            if (FightToday != "Yes")
-            {
-                FightToday = "No";
-            }
-            ViewBag.AFightToday = FightToday;
-            StarsSheet.SaveAndExit();
+            StarsSheet = new Excel("C:\\Logs\\stars.xls", "Gabriel");
+            StatAndClose();
         }
 
         public ActionResult StarManager()
@@ -85,19 +61,22 @@ namespace HalloweenController_v0._0._1.Controllers
             return View();
         }
 
-
         public void Fight(string Account)
         {
-            Excel StarsSheet = new Excel("C:\\Logs\\stars.xls", Account);
+            StarsSheet = new Excel("C:\\Logs\\stars.xls", Account);
             int row = StarsSheet.GetTodaysRow();
             StarsSheet.SetCellString(row, 2, "Yes");
+            StatAndClose();
+        }
 
-            //Get Stats
+        public void StatAndClose()
+        {
+            //Stat update
             StarsSheet.SwitchSheet("Gabriel");
             ViewBag.GTCount = StarsSheet.GetCellNumber(1, 2).ToString();
             int TR = StarsSheet.GetTodaysRow();
             ViewBag.GDCount = StarsSheet.GetCellNumber(TR, 4);
-            ViewBag.GFightCount = StarsSheet.GetCellNumber(1,8);
+            ViewBag.GFightCount = StarsSheet.GetCellNumber(1, 8);
             ViewBag.GDollars = "$" + StarsSheet.GetCellNumber(9, 8);
             ViewBag.GFightLost = "$" + StarsSheet.GetCellNumber(10, 8);
             string FightToday = StarsSheet.GetCellString(TR, 2);
@@ -122,81 +101,23 @@ namespace HalloweenController_v0._0._1.Controllers
             StarsSheet.SaveAndExit();
             NeedStats = false;
         }
-
 
         public void Payout(string Account)
         {
-            Excel StarsSheet = new Excel("C:\\Logs\\stars.xls", Account);
+            StarsSheet = new Excel("C:\\Logs\\stars.xls", Account);
             int row = StarsSheet.GetFirstEmptyRow("A");
-        
             double CurTotal = StarsSheet.GetCellNumber(1, 2);
             StarsSheet.SetCellNumber(row, 3, CurTotal);
             StarsSheet.SetCellString(row, 1, "Payday!");
-            StarsSheet.SwitchSheet("Gabriel");
-            ViewBag.GTCount = StarsSheet.GetCellNumber(1, 2).ToString();
-            int TR = StarsSheet.GetTodaysRow();
-            ViewBag.GDCount = StarsSheet.GetCellNumber(TR, 4);
-            ViewBag.GFightCount = StarsSheet.GetCellNumber(1, 8);
-            ViewBag.GDollars = "$" + StarsSheet.GetCellNumber(9, 8);
-            ViewBag.GFightLost = "$" + StarsSheet.GetCellNumber(10, 8);
-            string FightToday = StarsSheet.GetCellString(TR, 2);
-            if (FightToday != "Yes")
-            {
-                FightToday = "No";
-            }
-            ViewBag.GFightToday = FightToday;
-            StarsSheet.SwitchSheet("Adrian");
-            ViewBag.ATCount = StarsSheet.GetCellNumber(1, 2).ToString();
-            TR = StarsSheet.GetTodaysRow();
-            ViewBag.ADCount = StarsSheet.GetCellNumber(TR, 4);
-            ViewBag.AFightCount = StarsSheet.GetCellNumber(1, 8);
-            ViewBag.ADollars = "$" + StarsSheet.GetCellNumber(9, 8);
-            ViewBag.AFightLost = "$" + StarsSheet.GetCellNumber(10, 8);
-            FightToday = StarsSheet.GetCellString(TR, 2);
-            if (FightToday != "Yes")
-            {
-                FightToday = "No";
-            }
-            ViewBag.AFightToday = FightToday;
-            StarsSheet.SaveAndExit();
-            NeedStats = false;
+            StatAndClose();
         }
-
-
 
         public void AddStars(string Account, double Amount)
         {
-            Excel StarsSheet = new Excel("C:\\Logs\\stars.xls", Account);
+            StarsSheet = new Excel("C:\\Logs\\stars.xls", Account);
             int row = StarsSheet.GetTodaysRow();
             StarsSheet.AddToCell(row, 5, Amount);
-            StarsSheet.SwitchSheet("Gabriel");
-            ViewBag.GTCount = StarsSheet.GetCellNumber(1, 2).ToString();
-            int TR = StarsSheet.GetTodaysRow();
-            ViewBag.GDCount = StarsSheet.GetCellNumber(TR, 4);
-            ViewBag.GFightCount = StarsSheet.GetCellNumber(1, 8);
-            ViewBag.GDollars = "$" + StarsSheet.GetCellNumber(9, 8);
-            ViewBag.GFightLost = "$" + StarsSheet.GetCellNumber(10, 8);
-            string FightToday = StarsSheet.GetCellString(TR, 2);
-            if (FightToday != "Yes")
-            {
-                FightToday = "No";
-            }
-            ViewBag.GFightToday = FightToday;
-            StarsSheet.SwitchSheet("Adrian");
-            ViewBag.ATCount = StarsSheet.GetCellNumber(1, 2).ToString();
-            TR = StarsSheet.GetTodaysRow();
-            ViewBag.ADCount = StarsSheet.GetCellNumber(TR, 4);
-            ViewBag.AFightCount = StarsSheet.GetCellNumber(1, 8);
-            ViewBag.ADollars = "$" + StarsSheet.GetCellNumber(9, 8);
-            ViewBag.AFightLost = "$" + StarsSheet.GetCellNumber(10, 8);
-            FightToday = StarsSheet.GetCellString(TR, 2);
-            if (FightToday != "Yes")
-            {
-                FightToday = "No";
-            }
-            ViewBag.AFightToday = FightToday;
-            StarsSheet.SaveAndExit();
-            NeedStats = false;
+            StatAndClose();
         }
 
 
