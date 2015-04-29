@@ -109,6 +109,8 @@ namespace HalloweenController_v0._0._1.Controllers
             double CurTotal = StarsSheet.GetCellNumber(1, 2);
             StarsSheet.SetCellNumber(row, 3, CurTotal);
             StarsSheet.SetCellString(row, 1, "Payday!");
+            double FightAdjust = StarsSheet.GetCellNumber(1, 8) * -1;
+            StarsSheet.SetCellNumber(2, 8, FightAdjust);
             StatAndClose();
         }
 
