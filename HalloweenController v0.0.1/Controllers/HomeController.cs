@@ -105,7 +105,8 @@ namespace HalloweenController_v0._0._1.Controllers
         public void Payout(string Account)
         {
             StarsSheet = new Excel("C:\\Logs\\stars.xls", Account);
-            int row = StarsSheet.GetFirstEmptyRow("A");
+            int row = StarsSheet.GetTodaysRow();
+             //= StarsSheet.GetFirstEmptyRow("A");
             double CurTotal = StarsSheet.GetCellNumber(1, 2);
             StarsSheet.SetCellNumber(row, 3, CurTotal);
             StarsSheet.SetCellString(row, 1, "Payday!");
